@@ -1,0 +1,55 @@
+<html>
+<head>
+</head>
+
+<body ng-app="app">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 well" ng-controller="MainController">
+        <h2 class="mrgt00">Frello</h2>
+
+        <!-- <pre>{{todosList1}}</pre> -->
+        <form name="add-task">
+                <input type="text" class="form-control input-lg" placeholder="Vnesi ime taska..." name="taskdesc" required ng-model="task.desc" />
+        
+                <button class="btn btn-lg btn-primary btn-block" style="margin: 10px 0 30px 0;" ng-click="addTask()">Dodaj</button>
+        </form>
+        
+        <div class="row">
+          <div class="col-xs-6">
+
+                 <ul class="list-unstyled">
+                    <li class="alert alert-info" ng-class="{'opacity' : newtask.isCompleted}" ng-repeat="newtask in todosList1 track by $index">
+                      <input type="checkbox" class="checkbox pull-left" style="margin-right: 10px" ng-model="newtask.isCompleted" />
+                      <span>{{newtask.desc}}</span>
+                      <button type="button" class="close" ng-click="removeTask(newtask);fireEvent()">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </li>
+                  </ul>
+
+
+          </div>
+          <div class="col-xs-6">
+          
+
+                 <ul class="list-unstyled">
+                    <li class="alert alert-info" ng-class="{'opacity' : newtask.isCompleted}" ng-repeat="newtask in todosList2 track by $index">
+                      <input type="checkbox" class="checkbox pull-left" style="margin-right: 10px" ng-model="newtask.isCompleted" />
+                      <span>{{newtask.desc}}</span>
+                      <button type="button" class="close" ng-click="removeTask(newtask.index)">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </li>
+                  </ul>
+          
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>
