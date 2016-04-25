@@ -113,9 +113,7 @@ gulp.task('serve:prod', function() {
 gulp.task('bower', function () {
   return gulp.src(paths.views.main)
     .pipe(wiredep({
-      //directory: '/bower_components',
       ignorePath: '../bower_components'
-      //src: [yeoman.app + 'index.html']
     }))
   .pipe(gulp.dest(yeoman.app));
 });
