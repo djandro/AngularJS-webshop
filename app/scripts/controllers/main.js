@@ -8,88 +8,80 @@
  * Controller of the appFrelloApp
  */
 angular.module('appFrelloApp')
-  .controller('MainController', function ($scope, TodoFactory) {
+  .controller('MainController', function ($scope, todoFactory) {
 
-      /*
-       $scope.task = {
-       desc: '',
-       isCompleted: false
-       };
-       */
-      $scope.todosList1 = TodoFactory.todos;
-      $scope.todosList2 = TodoFactory.todos;
+      $scope.todosList1 = todoFactory.todos;
+      $scope.todosList2 = todoFactory.todos;
 
       $scope.addTask = function(){
-        TodoFactory.addTask($scope.task);
-        $scope.task = TodoFactory.resetTask();
+        todoFactory.addTask($scope.task);
+        $scope.task = todoFactory.resetTask();
       };
 
       $scope.removeTask = function(task){
-        TodoFactory.removeTask(task);
-      };
-
-      $scope.$on('fired.event', function(event, data){
-        $scope.data = 'Dodano';
-        console.log('dodatno');
-      });
-
-
-      $scope.fireEvent = function()
-      {
-        //$rootScope.$broadcast('fired.event', {data: 'Data to be sent'});
+        todoFactory.removeTask(task);
       };
 
   });
 
-//  factory
+
 angular.module('appFrelloApp')
-  .factory('TodoFactory', function() {
-      var todos = [];
+  .factory('todoFactory', ['toastr', function(toastr) {
+    var todos = [];
 
-      return {
-        todos: todos,
-        addTask: addTask,
-        removeTask: removeTask,
-        isEmpty: isEmpty,
-        isDuplicated: isDuplicated,
-        resetTask: resetTask
-      };
+    return {
+      todos: todos,
+      addTask: addTask,
+      removeTask: removeTask,
+      isEmpty: isEmpty,
+      isDuplicated: isDuplicated,
+      resetTask: resetTask
+    };
 
-      function isDuplicated(task){
-        var duplicate = false;
+    function isDuplicated(task){
+      var duplicate = false;
 
-        todos.forEach(function(todo) {
-          if(todo.desc === task.desc){
-            duplicate = true;
-          }
-        });
-
-        return duplicate;
-      }
-
-      function isEmpty(task){
-        var empty = false;
-        console.log(task.desc);
-        if(task.desc == '' || typeof task.desc == "undefined"){
-          empty = true;
+      todos.forEach(function(todo) {
+        if(todo.desc === task.desc){
+          duplicate = true;
         }
+      });
 
-        return empty;
+      return duplicate;
+    }
+
+    function isEmpty(task){
+      var empty = false;
+      console.log(task.desc);
+      if(task.desc == '' || typeof task.desc == "undefined"){
+        empty = true;
       }
 
-      function addTask(task){
-        if(isEmpty(task)) return;
-        if(isDuplicated(task)) return;
+      return empty;
+    }
 
-        todos.push(task);
+    function addTask(task){
+      if(isEmpty(task)) {
+        toastr.error('Vnesi ime taska!');
+        return;
+      }
+      if(isDuplicated(task)) {
+        toastr.error(task.desc, 'Ime taska že obstaja!');
+        return;
       }
 
-      function removeTask(task){
-        todos.splice(todos.indexOf(task), 1);
-      }
+      todos.push(task);
+      toastr.success(task.desc, 'Uspešno si dodal task');
+    }
 
-      function resetTask(){
-        return {desc: '', isCompleted: false};
-      }
+    function removeTask(task){
+      todos.splice(todos.indexOf(task), 1);
+      toastr.info(task.desc, 'Zbrisal si task');
+    }
 
-});
+    function resetTask(){
+      return {desc: '', isCompleted: false};
+    }
+
+  }]);
+

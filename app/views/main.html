@@ -6,7 +6,7 @@
     <form name="add-task">
       <input type="text" class="form-control input-lg" placeholder="Vnesi ime taska..." name="taskdesc" required ng-model="task.desc" />
 
-      <button class="btn btn-lg btn-primary btn-block" style="margin: 10px 0 30px 0;" ng-click="addTask()">Dodaj</button>
+      <button class="btn btn-lg btn-primary btn-block" style="margin: 10px 0 30px 0;" ng-click="addTask();">Dodaj</button>
     </form>
 
     <div class="row">
@@ -16,7 +16,7 @@
           <li class="alert alert-info" ng-class="{'opacity' : newtask.isCompleted}" ng-repeat="newtask in todosList1 track by $index">
             <input type="checkbox" class="checkbox pull-left" style="margin-right: 10px" ng-model="newtask.isCompleted" />
             <span>{{newtask.desc}}</span>
-            <button type="button" class="close" ng-click="removeTask(newtask);fireEvent()">
+            <button type="button" class="close" ng-click="removeTask(newtask);">
               <span aria-hidden="true">&times;</span>
             </button>
           </li>

@@ -15,9 +15,10 @@ angular
     'ngMessages',
     'ngResource',
     'ngRoute',
-    'ngTouch'
+    'ngTouch',
+    'toastr'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, toastrConfig) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -32,4 +33,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+    angular.extend(toastrConfig, {
+      progressBar: true
+    });
   });
