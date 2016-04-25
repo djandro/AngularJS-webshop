@@ -15,11 +15,11 @@ angular.module('app').controller('MainController', function($scope, TodoFactory)
   $scope.addTask = function(){
     TodoFactory.addTask($scope.task);
     $scope.task = TodoFactory.resetTask();
-  }
+  };
   
   $scope.removeTask = function(task){
     TodoFactory.removeTask(task);
-  }
+  };
   
   $scope.$on('fired.event', function(event, data){
       $scope.data = 'Dodano';
