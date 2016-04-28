@@ -14,26 +14,26 @@ angular
     'ngAria',
     'ngMessages',
     'ngResource',
-    'ngRoute',
+    'ui.router',
     'ngTouch',
     'toastr'
   ])
-  .config(function ($routeProvider, toastrConfig) {
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider, $urlRouterProvider, toastrConfig) {
+    $stateProvider.state('home', {
+        url: '/',
         templateUrl: 'views/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
+        controller: 'MainController'
       });
+
+    $stateProvider.state('about', {
+        url: '/about',
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
+      });
+
+    $urlRouterProvider.otherwise('/error');
+
     angular.extend(toastrConfig, {
-      progressBar: true
+        progressBar: true
     });
   });
