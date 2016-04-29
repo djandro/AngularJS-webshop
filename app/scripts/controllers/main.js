@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name appFrelloApp.controller:MainController
+ * @name app-webshop.controller:MainController
  * @description
  * # MainController
- * Controller of the appFrelloApp
+ * Controller of the app-webshop
  */
-angular.module('appFrelloApp')
+angular.module('app-webshop')
   .controller('MainController', ['$scope', 'todoFactory', function ($scope, todoFactory) {
 
       $scope.todosList1 = todoFactory.todos;

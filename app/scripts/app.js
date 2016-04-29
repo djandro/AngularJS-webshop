@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name appFrelloApp
+ * @name app-webshop
  * @description
- * # appFrelloApp
+ * # app-webshop
  *
  * Main module of the application.
  */
 angular
-  .module('appFrelloApp', [
+  .module('app-webshop', [
     'ngAnimate',
     'ngAria',
     'ngMessages',

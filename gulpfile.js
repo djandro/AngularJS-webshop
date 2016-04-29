@@ -46,11 +46,6 @@ gulp.task('styles', function () {
     .pipe(styles())
 });
 
-gulp.task('lint:scripts', function () {
-  return gulp.src(paths.scripts)
-    .pipe(lintScripts())
-});
-
 gulp.task('less', function () {
   return gulp.src(paths.less)
     .pipe(less())
@@ -61,17 +56,9 @@ gulp.task('clean:tmp', function (cb) {
   rimraf('./.tmp', cb);
 });
 
-gulp.task('start:client', ['start:server', 'styles'], function () {
-  openURL('http://localhost:9000');
-});
-
-gulp.task('start:server', function() {
-  $.connect.server({
-    root: [yeoman.app, '.tmp', 'bower_components'],
-    livereload: true,
-    // Change this to '0.0.0.0' to access the server from outside.
-    port: 9000
-  });
+gulp.task('lint:scripts', function () {
+  return gulp.src(paths.scripts)
+    .pipe(lintScripts())
 });
 
 gulp.task('watch', function () {
@@ -92,21 +79,33 @@ gulp.task('watch', function () {
   gulp.watch('bower.json', ['bower']);
 });
 
+gulp.task('start:server', function() {
+  $.connect.server({
+    root: [yeoman.app, '.tmp', 'bower_components'],
+    livereload: true,
+    // Change this to '0.0.0.0' to access the server from outside.
+    port: 9000
+  });
+});
+
 gulp.task('serve', function (cb) {
-  runSequence('clean:tmp',
+  runSequence(
+    'styles',
+    ['clean:tmp'],
     ['less'],
     ['lint:scripts'],
-    ['start:client'],
+    ['start:server'],
     'watch', cb);
+  openURL('http://localhost:9000');
 });
 
 gulp.task('serve:prod', function() {
   $.connect.server({
     root: [yeoman.dist],
     livereload: true,
-    port: 9000
+    port: 9002
   });
-  openURL('http://localhost:9000');
+  openURL('http://localhost:9002');
 });
 
 // inject bower components
@@ -139,7 +138,7 @@ gulp.task('client:build', ['html', 'styles'], function () {
     .pipe(cssFilter)
     .pipe($.minifyCss({cache: true}))
     .pipe(cssFilter.restore())
-    //.pipe($.rev())
+    //.pipe($.rev()) for hashing filenames
     //.pipe($.revReplace())
     .pipe(gulp.dest(yeoman.dist));
 });
@@ -151,11 +150,6 @@ gulp.task('html', function () {
 
 gulp.task('images', function () {
   return gulp.src(yeoman.app + '/images/**/*')
-    .pipe($.cache($.imagemin({
-        optimizationLevel: 5,
-        progressive: true,
-        interlaced: true
-    })))
     .pipe(gulp.dest(yeoman.dist + '/images'));
 });
 

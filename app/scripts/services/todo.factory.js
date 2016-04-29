@@ -2,7 +2,7 @@
  * Created by sixnqq on 28.4.2016.
  */
 
-angular.module('appFrelloApp')
+angular.module('app-webshop')
     .factory('todoFactory', ['toastr', function(toastr) {
         var todos = [];
 
@@ -43,12 +43,12 @@ angular.module('appFrelloApp')
                 return;
             }
             if(isDuplicated(task)) {
-                toastr.error(task.desc, 'Ime taska ûe obstaja!');
+                toastr.error(task.desc, 'Ime taska ≈æe obstaja!');
                 return;
             }
 
             todos.push(task);
-            toastr.success(task.desc, 'Uspeöno si dodal task');
+            toastr.success(task.desc, 'Uspe≈°no si dodal task');
         }
 
         function removeTask(task){

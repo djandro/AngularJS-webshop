@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name appFrelloApp.controller:AboutCtrl
+ * @name app-webshop.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the appFrelloApp
+ * Controller of the app-webshop
  */
-angular.module('appFrelloApp')
+angular.module('app-webshop')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
