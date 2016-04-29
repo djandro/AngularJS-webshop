@@ -21,7 +21,7 @@ var paths = {
   less: [yeoman.app + '/styles/**/*.less'],
   views: {
     main: yeoman.app + '/index.html',
-    files: [yeoman.app + '/views/**/*.html']
+    files: [yeoman.app + '/scripts/components/**/*.html']
   }
 };
 
@@ -144,8 +144,8 @@ gulp.task('client:build', ['html', 'styles'], function () {
 });
 
 gulp.task('html', function () {
-  return gulp.src(yeoman.app + '/views/**/*')
-    .pipe(gulp.dest(yeoman.dist + '/views'));
+  return gulp.src(path.views.files)
+    .pipe(gulp.dest(yeoman.dist + '/templates'));
 });
 
 gulp.task('images', function () {

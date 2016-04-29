@@ -21,14 +21,8 @@ angular
   .config(function ($stateProvider, $urlRouterProvider, toastrConfig) {
     $stateProvider.state('home', {
         url: '/',
-        templateUrl: 'views/main.html',
+        templateUrl: 'scripts/main/main.html',
         controller: 'MainController'
-      });
-
-    $stateProvider.state('about', {
-        url: '/about',
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
       });
 
     $urlRouterProvider.otherwise('/error');

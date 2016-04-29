@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="/angular-toastr/dist/angular-toastr.css" />
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <!-- build:css(.tmp) styles/style.css -->
+    <link rel="stylesheet" href="styles/style.css">
     <!-- endbuild -->
   </head>
   <body ng-app="app-webshop">
@@ -35,7 +35,7 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/">appFrello</a>
+            <a class="navbar-brand" ui-sref="home">appFrello</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
@@ -55,7 +55,7 @@
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> Frello by Andraz</p>
+        <p><span class="glyphicon glyphicon-heart"></span> WEBSHOP by Andraz</p>
       </div>
     </div>
 
@@ -77,8 +77,8 @@
 
     <!-- build:js(app) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/services/todo.factory.js"></script>
-    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/components/todo/todo.js"></script>
+    <script src="scripts/main/main.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <!-- endbuild -->
 </body>
